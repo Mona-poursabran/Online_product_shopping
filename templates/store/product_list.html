@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Simple House Template</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+	<link href="{% static 'product_list/css/templatemo-style.css' %}" rel="stylesheet" />
+
+	
+</head>
+<body> 
+
+	<div class="container">
+	<!-- Top box -->
+		<!-- Logo & Site Name -->
+		<div class="placeholder">
+                                    
+			<div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'product_list/img/about-05.jpg' %}">
+				<div class="tm-header">
+					<div class="row tm-header-inner">
+						<div class="col-md-6 col-12">
+							<div class="tm-site-text-box">
+								<h1 class="tm-site-title"><a href="{% url 'product_list' %}" style="color:white; font-weight:bold; text-decoration:none"> Products </a></h1>
+							</div>
+						</div>
+						<nav class="col-md-6 col-12 tm-nav">
+							<ul class="tm-nav-ul">
+								<li class="tm-nav-li"><a href="{% url 'admin_panel' %}" class="tm-nav-link active">Admin</a></li>
+								<li class="tm-nav-li"><a href="{% url 'store' %}" class="tm-nav-link">Store</a></li>
+								<li class="tm-nav-li"><a href="{% url 'new_product'  %}" class="tm-nav-link">new Product</a></li>
+                                <li class="tm-nav-li"><a href="{% url 'account_logout' %}" class="tm-nav-link">Log Out</a></li>
+							</ul>
+						</nav>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<main>
+			<header class="row tm-welcome-section">
+				<h2 class="col-12 text-center tm-section-title">Online Shoping Page </h2>
+				<p class="col-12 text-center"></p>
+			</header>
+
+
+            <div class="row tm-gallery">
+				<!-- gallery page 1 -->
+                
+				<div  class="tm-gallery-page">
+                    {% for product in products %}
+					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+						<figure>
+							<img src="{{product.imageURL}}" alt="Image" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<h4 class="tm-gallery-title">{{product.name}}</h4>
+								<p class="tm-gallery-description">{{product.price}} ريال</p>
+								<p class="tm-gallery-price"><a href="{% url 'product_detail' product.id %}" style="text-decoration:none" class="btn btn-info">view</a></p>
+							</figcaption>
+						</figure>
+					</article>
+                    {% endfor %}
+                </div>
+                
+            </div>
+            <div class="container">
+                {% block content %}{% endblock content %}
+            </div>
+        </main>
+        
+		<footer class="tm-footer text-center">
+			<p>Copyright &copy; 2022 Online Products 
+            
+            | Website: <a rel="nofollow" href="https://templatemo.com">Online Shoping</a></p>
+		</footer>
+	</div>
+	<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<script src="{% static 'product_list/js/jquery.min.js' %}"></script>
+	<script src="{% static 'product_list/js/parallax.min.js' %}"></script> 
+
+	{% block script %}{% endblock script %}
+</body>
+</html>

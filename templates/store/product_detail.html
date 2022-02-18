@@ -1,0 +1,40 @@
+{% extends "store/product_list.html" %}
+
+
+{% load static %}
+{% block content %}
+
+<div class="tm-section tm-container-inner">
+    <div class="row">
+        <div class="col-md-6">
+            <figure class="tm-description-figure">
+                <img src="{{product.imageURL}}" alt="Image" class="img-fluid" />
+            </figure>
+        </div>
+        <div class="col-md-6">
+            <div class="tm-description-box"> 
+                <h4 class="tm-gallery-title text-center" style="font-weight:bold;font-size: 61px;">{{product.name}}</h4>
+                <p class="tm-mb-45 text-center" style="font-size: 30px;font-weight: bold;">{{product.price}} ریال</p>
+                
+                <a href="{% url 'update_product' product.pk %}" class="tm-btn tm-btn-default " style="text-align: center;
+                font-weight: bold;background: bisque;margin-bottom: 5px;">Update</a>
+                
+                
+              
+                <a href="{% url 'delete_product' product.id %}" class="tm-btn tm-btn-default  delete" style="text-align: center;
+                font-weight: bold;background: #d1a9a9 ;margin-bottom: 5px;">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+  
+{% endblock content %}
+
+{% block script %}
+{% load static %}
+<script>
+    var URL = "{% url 'product_list'  %}"
+</script>
+<script src="{% static 'js/delete.js' %}"></script>	
+
+{% endblock script %}

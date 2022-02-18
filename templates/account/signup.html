@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+
+
+{% block link %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/signupform.css' %}">
+
+{% endblock link %}
+
+{% block check %}{% endblock check %}
+{% block content %}
+    <div class="login">
+      <div class="login-triangle"></div>
+        
+        <h2 class="login-header">Sign Up</h2>
+      
+        <form class="login-container" method='POST'>
+          {% csrf_token %}
+          {{form.as_p}}
+          <p><input type="submit" value="Sign Up" style="font-weight:bold"></p>
+        </form>
+        <h5 class="text-center"> Have you got an account? </h5>
+        <a href="{% url 'account_login' %}" style=" text-decoration: none;padding-left: 165px;font-weight: bold; color:#8a03ba;" >Log In</a>
+       
+        
+      </div>  
+    </div>
+
+{% endblock content %} 

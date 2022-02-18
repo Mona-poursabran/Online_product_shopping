@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static  %}
+
+{% block link %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock link %}
+
+{% block script1 %}
+	<script src="{% static 'js/main.js' %}"></script>
+	<script > 
+		var URL ="{% url 'search' %}"
+	</script>
+{% endblock script1 %}
+{% block content %}
+
+<div class="w-10 text-center">
+	<form id="search-form" autocomplete='off' style="margin-top: 10px;">
+		{% csrf_token %}
+		<input type="text" id='search-input' class='p-1 w-50 search' placeholder="search">
+	</form>	
+	<div id="result-box" class="result-card not-visible" style="width: 50%;max-height:none;"></div>
+</div>
+
+
+<div class="row">
+{% for product in products %}
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{{product.imageURL}}" >
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+				<h4 style="display: inline-block; float: left"><strong>  ریال{{product.price}} :قیمت</strong></h4>
+				<br><br>
+				<button data-product={{product.id}} data-action='add' class="btn btn-outline-secondary add-btn updatecart ">Add to Cart</button>
+				{% comment %} <a class="btn btn-outline-success" href="{% url 'view_detail' product.id %}">View</a> {% endcomment %}
+			</div>
+		</div>
+{% endfor %}	
+</div>
+
+
+{% endblock content %}
+
+
